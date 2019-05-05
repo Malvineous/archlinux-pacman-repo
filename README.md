@@ -21,10 +21,11 @@ updates.
 
 ### Example ###
 
-If uploading to `s3://example.com/hello/` then anyone wishing to use the repo
-will need to add this to `/etc/pacman.conf`:
+If uploading to `s3://example.com/hello/` and the repo defined in
+`Makefile.config` is called `myrepo`, then anyone wishing to use the repo will
+need to add this to `/etc/pacman.conf`:
 
-    [example]
+    [myrepo]
     SigLevel = Optional TrustAll
     Server = http://example.com/hello/$repo/$arch/
 
