@@ -1,0 +1,15 @@
+# Copy to Makefile.config and update as appropriate
+
+# This is a list of folders, relative to the Makefiles, that will be treated
+# as repositories.  They will each be processed in turn, if you wish to have
+# more than one repo.
+REPOS := folder1 folder2
+
+# This is a list of the architectures available in each repo.
+ARCHS := i686 x86_64
+
+# This is the AWS profile to use when uploading files.
+AWS_PROFILE := default
+
+# This is the destination where the repo will be uploaded to.
+AWS_S3_DEST := s3://mybucket/optional_folder/

@@ -1,0 +1,26 @@
+# List of packages in the 'any' folder, bare filenames only (no path)
+ANY_PKGS := $(notdir $(wildcard ../any/*-any.pkg.tar.xz))
+
+# All packages are deps of package database
+%.db.tar.gz: $(wildcard *.pkg.tar.xz) $(ANY_PKGS)
+	repo-add $@ $?
+
+.PHONY: all clean
+
+all: $(REPO).db.tar.gz
+
+# $(ANY_PKGS) isn't used in the first rm line below, as we want to remove all
+# 'any' packages, even if they have since been deleted from the 'any' folder.
+clean:
+	rm -f *-any.pkg.tar.xz
+	rm -f $(REPO).db
+	rm -f $(REPO).db.tar.gz
+	rm -f $(REPO).db.tar.gz.old
+
+.SECONDEXPANSION:
+
+# Rule to symlink all packages from 'any' folder to current dir
+$(ANY_PKGS): %-any.pkg.tar.xz: ../any/$$(notdir $$@)
+	rm -f $@
+	ln -s $< $@
+
