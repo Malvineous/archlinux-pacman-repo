@@ -11,5 +11,9 @@ ARCHS := i686 x86_64
 # This is the AWS profile to use when uploading files.
 AWS_PROFILE := default
 
-# This is the destination where the repo will be uploaded to.
+# This is the destination where the repo will be uploaded to.  It *must* end
+# with a trailing slash.
 AWS_S3_DEST := s3://mybucket/optional_folder/
+
+# Extra parameters to pass to `aws s3`
+#AWS_S3_PARAMS := --dryrun

@@ -8,12 +8,13 @@ updates.
 
 ### Use ###
 
-1. Create one subdirectory for each repo you wish to establish.
+1. Inside the `public` folder, create one subdirectory for each repo you wish
+   to establish.
 2. Inside this folder, create another one for each architecture you wish to
-   support, e.g. `i686`, `x86_64`, `any`, etc.
+   support, e.g. `i686`, `x86_64`, etc.
 3. Copy `Makefile.config.sample` to `Makefile.config` and update as required.
 4. Build your packages as normal, and put the output `.xz` files into the
-   relevant repo's architecture folder from step 2.
+   relevant repo's architecture folder from step 2 (see below for an example).
 5. Run `make` to construct the repo's database and upload it.
 6. As packages are updated, copy them in as per steps 4 and 5.  You can delete
    the old `.xz` files if you wish, or leave them around for a while in case
@@ -31,3 +32,18 @@ need to add this to `/etc/pacman.conf`:
 
 Run `pacman -Sy` to read in the new repo, after which you can install any
 packages from it with the usual `pacman -S packagename`.
+
+#### Example folder structure ####
+
+Once you have created the relevant folders, the tree should look similar to
+this:
+
+    ./Makefile
+    ./Makefile.config
+    ./README.md
+    ./public/
+    ./public/myrepo/
+    ./public/myrepo/x86_64/
+    ./public/myrepo/x86_64/mypackage-1.0-1-x86_64.pkg.tar.xz
+    ./public/myrepo/i686/
+    ./public/myrepo/i686/mypackage-1.0-1-i686.pkg.tar.xz
